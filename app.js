@@ -1,4 +1,4 @@
-// map object
+
 const myMap = {
 	coordinates: [],
 	businesses: [],
@@ -92,8 +92,60 @@ document.getElementById('submit').addEventListener('click', async (event) => {
 	event.preventDefault()
 	let business = document.getElementById('business').value
     console.log(business)
-    const businesses = await getFoursquare(business)
+    const businessType = await getFoursquare(business)
 	let data = await getFoursquare(business)
-	myMap.businesses = processBusinesses(business)
+	myMap.businessType= processBusinesses(business)
 	myMap.addMarkers()
 })
+
+const options = {
+	method: 'GET',
+	headers: {
+	  accept: 'application/json',
+	  Authorization: 'fsq3ZTtGW5noiwC0FWF8uDRdgG7oH9oI29eAC8enZR4BA0Q='
+	}
+  };
+  
+  fetch('https://api.foursquare.com/v3/places/search?query=restaurants', options)
+	.then(response => response.json())
+	.then(response => console.log(response))
+	.catch(err => console.error(err));
+
+	const hospitals = {
+		method: 'GET',
+		headers: {
+		  accept: 'application/json',
+		  Authorization: 'fsq3ZTtGW5noiwC0FWF8uDRdgG7oH9oI29eAC8enZR4BA0Q='
+		}
+	  };
+	  
+	  fetch('https://api.foursquare.com/v3/places/search?query=hospitals', options)
+		.then(response => response.json())
+		.then(response => console.log(response))
+		.catch(err => console.error(err));
+
+		const hotels = {
+			method: 'GET',
+			headers: {
+			  accept: 'application/json',
+			  Authorization: 'fsq3ZTtGW5noiwC0FWF8uDRdgG7oH9oI29eAC8enZR4BA0Q='
+			}
+		  };
+		  
+		  fetch('https://api.foursquare.com/v3/places/search?query=hotels', options)
+			.then(response => response.json())
+			.then(response => console.log(response))
+			.catch(err => console.error(err));
+
+			const gasStation = {
+				method: 'GET',
+				headers: {
+				  accept: 'application/json',
+				  Authorization: 'fsq3ZTtGW5noiwC0FWF8uDRdgG7oH9oI29eAC8enZR4BA0Q='
+				}
+			  };
+			  
+			  fetch('https://api.foursquare.com/v3/places/search?query=gas%20stations', options)
+				.then(response => response.json())
+				.then(response => console.log(response))
+				.catch(err => console.error(err));
